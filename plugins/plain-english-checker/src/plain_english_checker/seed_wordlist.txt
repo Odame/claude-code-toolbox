@@ -1,0 +1,21 @@
+# Seed defaults for plain-english-checker.
+# One term per line. Lines starting with # (and blank lines) are ignored.
+# This is the starting point copied to the live wordlist on first run —
+# edit the live list (or use the ban-term skill), not this file.
+utilize
+leverage
+facilitate
+endeavor
+commence
+synergy
+paradigm shift
+in order to
+at the end of the day
+going forward
+circle back
+touch base
+low-hanging fruit
+best-in-class
+robust solution
+deep dive
+bandwidth

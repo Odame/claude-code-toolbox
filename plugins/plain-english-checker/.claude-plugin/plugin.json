@@ -1,0 +1,11 @@
+{
+  "name": "plain-english-checker",
+  "displayName": "Plain English Checker",
+  "version": "0.1.0",
+  "description": "Blocks banned jargon/complex wording on Write/Edit and lets you grow the ban list from conversation.",
+  "author": {
+    "name": "Prince Odame"
+  },
+  "license": "MIT",
+  "keywords": ["writing", "style", "plain-english", "hooks"]
+}

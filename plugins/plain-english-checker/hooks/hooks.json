@@ -1,0 +1,28 @@
+{
+  "description": "Checks written/edited files against the plain-english banned-word list, and seeds that list on session start.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --project \"${CLAUDE_PLUGIN_ROOT}\" plain-english-checker check",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --project \"${CLAUDE_PLUGIN_ROOT}\" plain-english-checker seed",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
