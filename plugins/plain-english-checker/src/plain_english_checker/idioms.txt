@@ -1,0 +1,1763 @@
+# Idioms and cliches the idiom check matches against.
+# Extracted from the MAGPIE corpus: the distinct values of the "idiom" field in
+# MAGPIE_unfiltered.jsonl at https://github.com/hslh/magpie-corpus.
+# MAGPIE is by Hessel Haagsma, Johan Bos and Malvina Nissim, under CC BY 4.0
+# (https://creativecommons.org/licenses/by/4.0/). Full attribution and the exact
+# extraction command are in NOTICE.md, beside this plugin.
+# One idiom per line, base form only. Blank lines and lines starting with # are ignored.
+a hair's breadth
+a little bird told me
+a penny for your thoughts
+a pretty penny
+above board
+above par
+across the board
+act of God
+add fuel to the fire
+add insult to injury
+against the grain
+ahead of the curve
+ahead of the game
+alive and kicking
+all along
+all and sundry
+all bets are off
+all dressed up and nowhere to go
+all hell broke loose
+all in a day's work
+all over bar the shouting
+all over the map
+all over the place
+all over the shop
+all over the show
+all the rage
+all things being equal
+all wet
+along about
+an Englishman's home is his castle
+an old flame
+and all that jazz
+and then some
+any port in a storm
+anyone's guess
+anything goes
+apples and oranges
+argue the toss
+armed to the teeth
+around the clock
+arse about face
+as a rule
+as good as new
+as luck would have it
+as the actress said to the bishop
+as the crow flies
+ask for the moon
+asleep at the wheel
+at a canter
+at a loose end
+at a loss for words
+at a pinch
+at a snail's pace
+at a stretch
+at cross purposes
+at daggers drawn
+at death's door
+at full tilt
+at loggerheads
+at sea
+at sixes and sevens
+at the coalface
+at the crossroads
+at the drop of a hat
+at the end of the day
+at your fingertips
+away with the fairies
+babe in arms
+back to square one
+back to the drawing board
+bag and baggage
+banana republic
+bang for the buck
+bang to rights
+bar none
+bark up the wrong tree
+basket case
+batten down the hatches
+be all ears
+be left holding the baby
+be my guest
+bear fruit
+bear in mind
+beard the lion in his den
+beat about the bush
+beat swords into ploughshares
+beat the clock
+beat the daylights out of
+beat the meat
+beat the rap
+bedroom eyes
+been there, done that
+beer and skittles
+before you can say Jack Robinson
+before you can say knife
+beg the question
+beggars can't be choosers
+behind bars
+behind closed doors
+behind someone's back
+behind the curve
+behind the eight ball
+behind the scenes
+bell the cat
+bells and whistles
+below par
+below the belt
+belt and braces
+bend someone's ear
+beside yourself
+better late than never
+better safe than sorry
+better the devil you know
+between a rock and a hard place
+between the devil and the deep blue sea
+betwixt and between
+beyond the pale
+big girl's blouse
+big hitter
+birds of a feather
+bite off more than you can chew
+bite someone's head off
+bite the big one
+bite the bullet
+bite the dust
+bite your lip
+bite your tongue
+bits and bobs
+black and blue
+blaze a trail
+bleeding heart
+blood and guts
+blood and thunder
+blood is thicker than water
+blow a fuse
+blow a gasket
+blow hot and cold
+blow off steam
+blow someone's cover
+blow someone's mind
+blow the lid off
+blow your own trumpet
+blow your top
+Bob's your uncle
+body blow
+boots and all
+born and bred
+bottom drawer
+bounce off the walls
+bow and scrape
+box clever
+boys in blue
+boys will be boys
+brass monkey
+brass neck
+bread and circuses
+break cover
+break even
+break new ground
+break ranks
+break someone's heart
+break the back of
+break the bank
+break the ice
+breathe down someone's neck
+bright and early
+bright young thing
+bring home the bacon
+bring someone to book
+bring the house down
+bring up the rear
+broad in the beam
+brownie point
+bugger all
+Buggins's turn
+build castles in the air
+bum steer
+bums on seats
+bundle of joy
+burn rubber
+burn the candle at both ends
+burn the midnight oil
+burst someone's bubble
+bury the hatchet
+bury your head in the sand
+bush telegraph
+buy the farm
+buy time
+by a long chalk
+by a long shot
+by and large
+by dint of
+by heart
+by hook or by crook
+by leaps and bounds
+by no stretch of the imagination
+by the back door
+by the book
+by the by
+by the same token
+by the seat of your pants
+by the skin of your teeth
+cakes and ale
+call a spade a spade
+call it a day
+call it quits
+call off the dogs
+call someone's bluff
+call the shots
+call the tune
+cap in hand
+carrot and stick
+carry a torch for
+carry the can
+carry the day
+cast pearls before swine
+cast the first stone
+cast your mind back
+catch a cold
+catch fire
+catch someone napping
+catch someone's eye
+catch the sun
+champ at the bit
+change hands
+change your tune
+chapter and verse
+charity begins at home
+chase rainbows
+chase your tail
+cheek by jowl
+chew the cud
+chew the fat
+chicken feed
+chickens come home to roost
+child's play
+chop and change
+chuck it down
+circle the wagons
+claim to fame
+clean as a whistle
+clean house
+clear as mud
+clear the decks
+close but no cigar
+close call
+close ranks
+close shave
+close to home
+cloth ears
+clutch at straws
+coals to Newcastle
+cock a snook
+cock of the walk
+cog in the machine
+cold comfort
+cold feet
+collect dust
+come a cropper
+come clean
+come down the pike
+come full circle
+come hell or high water
+come in from the cold
+come of age
+come out in the wash
+come out of your shell
+come rain or shine
+come the acid
+come to a head
+come to a pretty pass
+come to grief
+come to grips with
+come to mind
+come to terms with
+come to think of it
+come unstuck
+come up roses
+come up smelling of roses
+come up trumps
+come with the territory
+confirmed bachelor
+cook someone's goose
+cook the books
+cool your heels
+cop a plea
+cost the earth
+couch potato
+could eat a horse
+count sheep
+count your blessings
+cramp someone's style
+crash and burn
+crocodile tears
+cross my heart
+cross swords
+cross the Rubicon
+cruising for a bruising
+cry foul
+cry uncle
+cry wolf
+crystal clear
+cuckoo in the nest
+curiosity killed the cat
+curry favour
+cut a dash
+cut a rug
+cut and dried
+cut and run
+cut and thrust
+cut both ways
+cut corners
+cut from the same cloth
+cut it fine
+cut loose
+cut no ice
+cut the crap
+cut the Gordian knot
+cut the mustard
+cut your coat according to your cloth
+cut your losses
+day in, day out
+daylight robbery
+dead and buried
+dead as a dodo
+dead as a doornail
+dead in the water
+dead meat
+dead men's shoes
+dead to the world
+dead wood
+deaf as a post
+dice with death
+die on the vine
+different strokes for different folks
+dig deep
+dig up dirt
+discretion is the better part of valour
+dish the dirt
+do a bunk
+do a number on
+do a runner
+do me a favour
+do someone proud
+do someone's head in
+do the honours
+do the right thing
+do the trick
+dog eat dog
+dog in the manger
+dog tired
+don't give up the day job
+don't hold your breath
+donkey work
+doom and gloom
+dot the i's and cross the t's
+down and dirty
+down and out
+down at heel
+down in the dumps
+down in the mouth
+down the drain
+down the hatch
+down the road
+down the tubes
+down to the wire
+drag your feet
+draw a bead on
+draw a blank
+draw a line in the sand
+draw stumps
+draw the short straw
+dressed to kill
+dressed to the nines
+drink like a fish
+drive someone up the wall
+drop a brick
+drop a hint
+drop like flies
+drop someone a line
+drop the ball
+drown your sorrows
+drunk as a lord
+dry as dust
+duck soup
+duke it out
+Dutch courage
+dyed in the wool
+early bird
+easier said than done
+easy as falling off a log
+easy as pie
+easy does it
+easy on the eye
+eat humble pie
+eat like a horse
+eat someone alive
+eat someone out of house and home
+eat your heart out
+eat your words
+economical with the truth
+err on the side of
+eternal triangle
+every dog has its day
+every last
+every man for himself
+every man jack
+every nook and cranny
+every trick in the book
+every which way
+everything but the kitchen sink
+everything in the garden is rosy
+eyeball to eyeball
+face the music
+face to face
+fair and square
+fair game
+fall between two stools
+fall by the wayside
+fall from grace
+fall in line
+fall into place
+fall off the back of a lorry
+fall on deaf ears
+fall on stony ground
+fall short
+famous last words
+far and away
+fast and furious
+feast or famine
+feeding frenzy
+feel the pinch
+few and far between
+fight fire with fire
+fight shy of
+fight tooth and nail
+fill someone's shoes
+fill the bill
+find your feet
+fire in the belly
+first among equals
+first off
+first up
+fish in troubled waters
+fit as a fiddle
+fit like a glove
+fit the bill
+fit to be tied
+five-finger discount
+flash in the pan
+flat as a pancake
+float someone's boat
+flog a dead horse
+flutter the dovecotes
+fly a kite
+fly in the face of
+fly off the handle
+fly the coop
+fly the flag
+foam at the mouth
+follow in someone's footsteps
+follow suit
+follow your nose
+food for thought
+foot the bill
+for a song
+for Africa
+for crying out loud
+for donkey's years
+for good measure
+for keeps
+for my money
+for the hell of it
+for the time being
+forbidden fruit
+force someone's hand
+forty winks
+free and easy
+free rein
+friends in high places
+from A to Z
+from pillar to post
+from rags to riches
+from scratch
+from stem to stern
+from the cradle to the grave
+from the horse's mouth
+from the word go
+full marks
+full of beans
+full of the joys of spring
+full speed ahead
+full tilt
+full whack
+fun and games
+game on
+gather dust
+get a grip
+get a handle on
+get a life
+get a move on
+get a rise out of
+get away with murder
+get cracking
+get down to brass tacks
+get in on the ground floor
+get it in the neck
+get it up
+get lost
+get off the ground
+get on like a house on fire
+get on someone's nerves
+get on someone's wick
+get someone's back up
+get someone's goat
+get stuck in
+get stuck into
+get the better of
+get the boot
+get the nod
+get the picture
+get the show on the road
+get to grips with
+get to the bottom of
+get under someone's skin
+get up someone's nose
+get wind of
+get your feet wet
+get your hands dirty
+get your skates on
+get your teeth into
+gild the lily
+give and take
+give as good as you get
+give head
+give it a whirl
+give someone a bloody nose
+give someone a piece of your mind
+give someone enough rope
+give someone grief
+give someone pause
+give someone the creeps
+give someone the eye
+give someone the runaround
+give someone the slip
+give someone what for
+give something a miss
+give up the ghost
+go all the way
+go ballistic
+go bananas
+go begging
+go by the board
+go down a storm
+go down like a lead balloon
+go down the pan
+go down the wrong way
+go downhill
+go Dutch
+go for broke
+go for the jugular
+go from strength to strength
+go great guns
+go halves
+go hand in hand
+go it alone
+go native
+go off the boil
+go overboard
+go places
+go public
+go round in circles
+go spare
+go straight
+go the distance
+go the extra mile
+go the whole hog
+go through the mill
+go through the motions
+go to ground
+go to seed
+go to the dogs
+go to the mat
+go to the wall
+go to town
+go to your head
+go under the hammer
+go up in smoke
+go west
+go with the flow
+go without saying
+gone with the wind
+good offices
+good riddance
+good Samaritan
+grasp at straws
+grasp the nettle
+grease someone's palm
+grease the wheels
+greasy spoon
+great minds think alike
+green light
+green with envy
+grin and bear it
+grin like a Cheshire cat
+grind to a halt
+grist to the mill
+hack it
+hair of the dog
+hammer and tongs
+hand in glove
+hand to mouth
+hands down
+handsome is as handsome does
+hang by a thread
+hang fire
+hang tough
+hard as nails
+hard cheese
+hate someone's guts
+haul someone over the coals
+have a ball
+have a bash
+have a bun in the oven
+have a cow
+have a few
+have a foot in both camps
+have a heart
+have a mountain to climb
+have a screw loose
+have a tiger by the tail
+have an eye for
+have been around
+have it both ways
+have it easy
+have kittens
+have no truck with
+have other fish to fry
+have someone by the short and curlies
+have someone on toast
+have someone's guts for garters
+have someone's number
+have the hots for
+have the last laugh
+have words
+have your work cut out
+head for the hills
+head over heels
+head south
+heads will roll
+hear things
+heart and soul
+heart of gold
+heart to heart
+heavy hitter
+hedge your bets
+hell for leather
+high and dry
+high and low
+high and mighty
+high as a kite
+hit a nerve
+hit and miss
+hit home
+hit someone for six
+hit the bottle
+hit the ceiling
+hit the ground running
+hit the hay
+hit the headlines
+hit the jackpot
+hit the mark
+hit the nail on the head
+hit the right note
+hit the road
+hit the sack
+hit the skids
+Hobson's choice
+hold all the aces
+hold court
+hold someone's hand
+hold the fort
+hold the line
+hold the purse strings
+hold the ring
+hold water
+hold your horses
+hold your own
+hold your tongue
+holy of holies
+home and dry
+honours are even
+hook, line, and sinker
+hope against hope
+horses for courses
+hot air
+hot and bothered
+hot and heavy
+hot to trot
+hot under the collar
+how's tricks?
+hum and haw
+I'll eat my hat
+if the cap fits, wear it
+in a fog
+in a nutshell
+in a rut
+in apple-pie order
+in bed with
+in black and white
+in broad daylight
+in business
+in cahoots
+in cold blood
+in Dutch
+in for a penny, in for a pound
+in full swing
+in high dudgeon
+in hot water
+in light of
+in living memory
+in my book
+in no uncertain terms
+in one ear and out the other
+in someone's pocket
+in spades
+in stitches
+in tandem
+in the altogether
+in the bag
+in the ballpark
+in the black
+in the blink of an eye
+in the buff
+in the can
+in the clear
+in the club
+in the dock
+in the doghouse
+in the driver's seat
+in the driving seat
+in the family way
+in the fast lane
+in the final analysis
+in the flesh
+in the hole
+in the lap of luxury
+in the long run
+in the long term
+in the loop
+in the nick of time
+in the offing
+in the pink
+in the pipeline
+in the raw
+in the red
+in the running
+in the saddle
+in the same breath
+in the short run
+in the soup
+in the sticks
+in the swim
+in the wink of an eye
+in the works
+in this day and age
+in two shakes
+in your blood
+in your dreams
+in your element
+in your face
+in your sights
+Indian summer
+into thin air
+it never rains but it pours
+it takes two to tango
+it's all Greek to me
+jack of all trades
+jam tomorrow
+Jekyll and Hyde
+jobs for the boys
+jockey for position
+join the club
+joined at the hip
+jump down someone's throat
+jump on the bandwagon
+jump ship
+jump the gun
+jump the queue
+jump the track
+jump through hoops
+jump to conclusions
+keen as mustard
+keep a lid on
+keep a low profile
+keep a straight face
+keep body and soul together
+keep mum
+keep on trucking
+keep someone in the dark
+keep someone posted
+keep tabs on
+keep the peace
+keep the wolf from the door
+keep up appearances
+keep up with the Joneses
+keep your chin up
+keep your eye on the ball
+keep your eyes peeled
+keep your fingers crossed
+keep your head
+keep your head above water
+keep your nose clean
+keep your nose to the grindstone
+keep your options open
+keep your pecker up
+keep your powder dry
+kick against the pricks
+kick ass
+kick over the traces
+kick the bucket
+kick the habit
+kick up a fuss
+kick up a stink
+kick up your heels
+kicking and screaming
+kill the fatted calf
+kill the goose that lays the golden egg
+kill the goose that lays the golden eggs
+kill the messenger
+kill two birds with one stone
+king of beasts
+kiss and make up
+kiss and tell
+kiss ass
+kiss of death
+kiss of life
+kiss something goodbye
+kith and kin
+knock it off
+knock someone's block off
+knock someone's socks off
+know no bounds
+know the ropes
+know the score
+know your onions
+lame duck
+land of nod
+larger than life
+last hurrah
+laugh all the way to the bank
+laugh like a drain
+laughing stock
+lay a finger on
+lay an egg
+lay down the law
+lay eyes on
+lay odds
+lead someone up the garden path
+leave no stone unturned
+leave someone in the lurch
+leave well alone
+left and right
+lend a hand
+lend an ear
+let bygones be bygones
+let sleeping dogs lie
+let someone down gently
+let the cat out of the bag
+let the genie out of the bottle
+let your hair down
+let's be having you
+licence to print money
+lick someone's boots
+lie low
+lie through your teeth
+life and limb
+lift a finger
+light at the end of the tunnel
+like a bat out of hell
+like a bear with a sore head
+like clockwork
+like father, like son
+like peas in a pod
+like the clappers
+live a lie
+live and learn
+live and let live
+live in sin
+live it up
+live wire
+lock horns
+lock the stable door after the horse has bolted
+lone wolf
+long in the tooth
+long time no see
+look before you leap
+look on the bright side
+look the other way
+look the part
+lose face
+lose heart
+lose the plot
+lose your head
+lose your marbles
+lose your shirt
+lower your sights
+make a clean break
+make a go of
+make a killing
+make a meal of
+make a monkey of someone
+make a mountain out of a molehill
+make a move
+make a night of it
+make a pig's ear of
+make a pitch
+make a splash
+make a virtue of necessity
+make bricks without straw
+make ends meet
+make hay
+make head or tail of
+make heavy weather of
+make history
+make it snappy
+make light of
+make light work of
+make money hand over fist
+make or break
+make short work of
+make someone's day
+make the cut
+make the grade
+make tracks
+make waves
+make your blood boil
+make yourself scarce
+man and boy
+man of god
+man of straw
+man of the cloth
+man's best friend
+many moons ago
+marching orders
+mark someone's card
+mark time
+marriage of convenience
+mean business
+meat and potatoes
+meet someone halfway
+meet your maker
+meet your match
+meet your Waterloo
+mend fences
+mind over matter
+miss the boat
+moment of truth
+money for jam
+money talks
+more haste, less speed
+more's the pity
+move heaven and earth
+move mountains
+move the goalposts
+much of a muchness
+muddy the waters
+mum's the word
+mutton dressed as lamb
+my bad
+my foot!
+name names
+near the knuckle
+neck and neck
+neck of the woods
+neither fish nor fowl
+neither here nor there
+never say die
+never the twain shall meet
+never you mind
+new blood
+nice as pie
+night and day
+nine times out of ten
+nip and tuck
+no can do
+no dice
+no great shakes
+no holds barred
+no laughing matter
+no man's land
+no pain, no gain
+no peace for the wicked
+no questions asked
+no rest for the wicked
+no smoke without fire
+no spring chicken
+no strings attached
+no sweat
+no time like the present
+no two ways about it
+not a pretty sight
+not all there
+not bat an eye
+not cricket
+not give a fig
+not just a pretty face
+not know you are born
+not miss a trick
+not much cop
+not on your life
+not to be sneezed at
+not to put too fine a point on it
+not worth the candle
+nothing doing
+nothing to it
+nothing to write home about
+now or never
+nudge nudge wink wink
+nuts and bolts
+nutty as a fruitcake
+odd one out
+odds and ends
+off and on
+off and running
+off the beaten track
+off the cuff
+off the hook
+off the mark
+off the record
+off the shelf
+off the top of your head
+off the wall
+off your rocker
+oil and water
+old as the hills
+old hat
+on a full stomach
+on a roll
+on a shoestring
+on a silver platter
+on and off
+on board
+on cloud nine
+on edge
+on ice
+on paper
+on someone's mind
+on tenterhooks
+on the back burner
+on the back of
+on the ball
+on the blink
+on the bounce
+on the bubble
+on the button
+on the cards
+on the carpet
+on the cuff
+on the dot
+on the double
+on the face of it
+on the fiddle
+on the fly
+on the game
+on the hoof
+on the hop
+on the horn
+on the horns of a dilemma
+on the house
+on the knocker
+on the lam
+on the level
+on the make
+on the mend
+on the money
+on the nod
+on the nose
+on the pull
+on the rebound
+on the rocks
+on the ropes
+on the run
+on the same page
+on the same wavelength
+on the shelf
+on the side of the angels
+on the skids
+on the spur of the moment
+on the square
+on the stump
+on the take
+on the trot
+on the up and up
+on the wagon
+on the warpath
+on thin ice
+on top of the world
+on your high horse
+on your soapbox
+on your toes
+once and for all
+once bitten, twice shy
+once in a blue moon
+once in a while
+one and the same
+one for the road
+one good turn deserves another
+one in the eye for
+one of those days
+one of those things
+one over the eight
+one-horse race
+only time will tell
+open someone's eyes
+open the floodgates
+out and about
+out cold
+out of kilter
+out of line
+out of order
+out of pocket
+out of sight
+out of sight, out of mind
+out of sorts
+out of the blue
+out of the box
+out of the loop
+out of the picture
+out of the question
+out of the running
+out of the woods
+out of thin air
+out of this world
+out of whack
+out of your mind
+out on a limb
+out to lunch
+over my dead body
+over the counter
+over the hill
+over the moon
+over the top
+over the transom
+over your head
+over-egg the pudding
+pack a punch
+packed like sardines
+paint the town red
+paper over the cracks
+par for the course
+pardon my French
+part company
+part of the furniture
+party animal
+pass muster
+pass the buck
+pass the time of day
+pay the piper
+pay through the nose
+peaches and cream
+pearly whites
+pecking order
+peed off
+perish the thought
+pick holes
+pick someone's brain
+pick someone's brains
+pick up the pieces
+pick up the tab
+pie in the sky
+pigs can fly
+pigs might fly
+piping hot
+piss and vinegar
+pissed off
+place in the sun
+plain as a pikestaff
+plain Jane
+plain sailing
+plan B
+play ball
+play fast and loose
+play for keeps
+play for time
+play games
+play gooseberry
+play hard to get
+play hookey
+play into someone's hands
+play it cool
+play it safe
+play possum
+play silly buggers
+play the field
+play to the gallery
+play with fire
+pleased as punch
+poacher turned gamekeeper
+point the finger
+poor as a church mouse
+poor little rich girl
+pop the question
+pound the pavement
+pour cold water on
+pour oil on troubled waters
+powder your nose
+power behind the throne
+practise what you preach
+presence of mind
+present company excepted
+press the flesh
+press the panic button
+prick up your ears
+prodigal son
+prop up the bar
+public enemy number one
+pull a face
+pull a fast one
+pull a rabbit out of a hat
+pull out all the stops
+pull rank
+pull someone's leg
+pull strings
+pull the plug
+pull the wool over someone's eyes
+pull up stakes
+pull your punches
+pull your weight
+pump iron
+pure and simple
+push someone's buttons
+push the boat out
+push the envelope
+push the panic button
+pushing up the daisies
+put a damper on
+put a foot wrong
+put a sock in it
+put down roots
+put on the ritz
+put paid to
+put someone in mind of
+put someone on a pedestal
+put someone out to pasture
+put the boot in
+put the cart before the horse
+put the cat among the pigeons
+put the kibosh on
+put the moves on
+put the screws on
+put the wind up
+put two and two together
+put up or shut up
+put words in someone's mouth
+put your best foot forward
+put your cards on the table
+put your foot down
+put your foot in it
+put your heads together
+put your oar in
+put your shoulder to the wheel
+Pyrrhic victory
+queer someone's pitch
+quick as a flash
+quick on the draw
+quiet as a mouse
+rack your brain
+rags to riches
+rain cats and dogs
+rain or shine
+raise Cain
+raise hell
+raise the roof
+rake over old coals
+rank and file
+rare bird
+rattle someone's cage
+reach for the stars
+read between the lines
+read my lips
+recharge your batteries
+reds under the bed
+reinvent the wheel
+rest on your laurels
+rewrite history
+rhyme or reason
+ride for a fall
+ride herd on
+ride high
+ride roughshod over
+ride shotgun
+ride the rails
+right as rain
+right up your street
+ring a bell
+ring off the hook
+rise and shine
+rise from the ashes
+rise through the ranks
+rise to the occasion
+rob Peter to pay Paul
+rock bottom
+rock the boat
+roll up your sleeves
+roll with the punches
+rough and ready
+rough and tumble
+rough around the edges
+rough edges
+round the bend
+round the clock
+rub shoulders
+rub someone the wrong way
+rub someone up the wrong way
+ruffle someone's feathers
+rule of thumb
+rule the roost
+run a mile
+run amok
+run before you can walk
+run into the sand
+run out of gas
+run out of steam
+run riot
+run someone ragged
+run something up the flagpole
+run the gamut
+run the gauntlet
+sad sack
+safe as houses
+sail close to the wind
+sail under false colours
+same difference
+save face
+save someone's bacon
+save someone's skin
+save the day
+saved by the bell
+say cheese
+say uncle
+scarlet woman
+scratch the surface
+scream blue murder
+seal of approval
+second childhood
+second nature
+see a man about a dog
+see eye to eye
+see red
+see stars
+see the elephant
+see the light
+see the light of day
+see which way the cat jumps
+seeing is believing
+seen better days
+seize the day
+sell like hot cakes
+sell your soul
+send someone packing
+send someone to Coventry
+separate the sheep from the goats
+separate the wheat from the chaff
+serve someone right
+set eyes on
+set the wheels in motion
+set your sights on
+settle a score
+shake a leg
+share and share alike
+she'll be right
+shipshape and Bristol fashion
+shoot from the hip
+shoot the breeze
+shoot the bull
+shoot the messenger
+short and sweet
+short shrift
+shove something down someone's throat
+show a leg
+show someone the door
+show the flag
+shrinking violet
+shuffle off this mortal coil
+shut the door on
+sick and tired
+sick as a dog
+sick as a parrot
+sick to death
+sign of the times
+sign on the dotted line
+silence is golden
+silent as the grave
+sing for your supper
+sing the praises of
+sink or swim
+siren song
+sit on the fence
+sit tight
+sitting duck
+sitting pretty
+six feet under
+six of the best
+slap and tickle
+slap on the wrist
+sleep like a log
+sleep rough
+sleight of hand
+sling your hook
+slip of the pen
+slip of the tongue
+slip through the net
+slippery slope
+slow burn
+slow but sure
+small beer
+small potatoes
+small print
+smart alec
+smell a rat
+smell blood
+smell of the lamp
+smoke and mirrors
+smoke like a chimney
+snap someone's head off
+snug as a bug in a rug
+something nasty in the woodshed
+song and dance
+sour grapes
+spare someone's blushes
+spare the rod and spoil the child
+speak of the devil
+speak volumes
+speak your mind
+spend a penny
+spill the beans
+spin a yarn
+spit blood
+spit feathers
+spit it out
+spit the dummy
+split hairs
+split the difference
+spot on
+spread yourself too thin
+spring to mind
+square the circle
+squeaky clean
+stake a claim
+stand on ceremony
+stand pat
+stand someone in good stead
+stand the test of time
+stand up and be counted
+start off on the right foot
+start off on the wrong foot
+state of the art
+stay the course
+stay the distance
+steal someone's thunder
+steal the show
+steer clear of
+step on it
+step on someone's toes
+stick in your craw
+stick out like a sore thumb
+stick to your guns
+stick your neck out
+sticky fingers
+still waters run deep
+stop at nothing
+straight from the horse's mouth
+straight from the shoulder
+strain at the leash
+strain every nerve
+streets ahead
+strike a chord
+strike it rich
+strike while the iron is hot
+stroke of luck
+stubborn as a mule
+sure as eggs is eggs
+swear like a trooper
+sweat blood
+sweat like a pig
+sweep someone off their feet
+sweep the board
+sweet nothings
+sweetness and light
+swim against the tide
+swim with the tide
+swing the lead
+swings and roundabouts
+take a back seat
+take a bath
+take a bow
+take a dim view of
+take a dive
+take a flyer
+take a hike
+take a leaf out of someone's book
+take a leak
+take a powder
+take a shine to
+take heart
+take it easy
+take it from me
+take it on the chin
+take it or leave it
+take liberties
+take no prisoners
+take root
+take someone for a ride
+take someone to task
+take someone to the cleaners
+take someone's word for it
+take something as read
+take stock
+take the biscuit
+take the bull by the horns
+take the cake
+take the count
+take the fall
+take the fifth
+take the floor
+take the gilt off the gingerbread
+take the liberty
+take the mickey
+take the piss
+take the plunge
+take the rough with the smooth
+take the wind out of someone's sails
+take to the hills
+take up the gauntlet
+talk dirty
+talk nineteen to the dozen
+talk of the devil
+talk out of turn
+talk shop
+talk the talk
+talk turkey
+tan someone's hide
+taste blood
+teething troubles
+tell it like it is
+tell tales
+tell tales out of school
+tempt fate
+tempt providence
+ten a penny
+thanks for nothing
+that makes two of us
+the ayes have it
+the ball is in someone's court
+the bee's knees
+the biter bit
+the buck stops here
+the die is cast
+the grass is always greener
+the icing on the cake
+the joke is on someone
+the more the merrier
+the plot thickens
+the rest is history
+the whole shooting match
+the world and his wife
+them's the breaks
+there's no fool like an old fool
+there's no such thing as a free lunch
+there's the rub
+thick and fast
+thick as thieves
+thin as a rake
+things that go bump in the night
+think outside the box
+think the world of
+think twice
+third time lucky
+through thick and thin
+throw a curve
+throw a wobbly
+throw caution to the wind
+throw cold water on
+throw down the gauntlet
+throw good money after bad
+throw in the towel
+throw someone to the wolves
+throw the baby out with the bathwater
+throw the book at
+throw your hat in the ring
+throw your weight around
+thumb your nose at
+tickle the ivories
+tie the knot
+till the cows come home
+tilt at windmills
+time and tide wait for no man
+time will tell
+tip the scales
+tired and emotional
+tit for tat
+to a nicety
+to a T
+to a turn
+to all intents and purposes
+to beat the band
+to boot
+to die for
+to say the least
+to the bone
+to the hilt
+to the letter
+to the max
+to the nth degree
+to the tune of
+toe the line
+tongue in cheek
+too big for your boots
+too clever by half
+too many chiefs and not enough Indians
+too many cooks spoil the broth
+top banana
+top dollar
+touch a nerve
+touch and go
+touch base
+touch wood
+tough as old boots
+tough titty
+town and gown
+tread on someone's toes
+tread the boards
+tread water
+tried and true
+true blue
+true to form
+turn a blind eye
+turn a trick
+turn heads
+turn over a new leaf
+turn someone's head
+turn something on its head
+turn tail
+turn the corner
+turn the other cheek
+turn the screw
+turn the tables
+turn turtle
+turn up like a bad penny
+turn up trumps
+twist someone's arm
+twist the knife
+two a penny
+two heads are better than one
+two-way street
+under a cloud
+under fire
+under lock and key
+under the gun
+under the influence
+under the microscope
+under the rose
+under the sun
+under the table
+under the weather
+under the wire
+under your belt
+under your breath
+unknown quantity
+up a gum tree
+up a tree
+up against it
+up and running
+up for grabs
+up hill and down dale
+up in the air
+up shit creek
+up sticks
+up the ante
+up the river
+up the spout
+up to here
+up to no good
+up to par
+up to scratch
+up to snuff
+up to speed
+up to the hilt
+up with the lark
+upset the apple cart
+use a sledgehammer to crack a nut
+vale of tears
+vent your spleen
+wake up and smell the coffee
+walk all over
+walk free
+walk of life
+walk on eggshells
+walk the plank
+walk the talk
+warm the cockles of someone's heart
+warts and all
+waste not, want not
+watch this space
+watch your back
+water under the bridge
+watering hole
+way to go
+weak at the knees
+wear the trousers
+wear your heart on your sleeve
+weather the storm
+wet behind the ears
+what goes around comes around
+what's the damage?
+what's your poison?
+wheels within wheels
+when all is said and done
+when push comes to shove
+when the chips are down
+whistle Dixie
+whistle in the dark
+white hat
+whoop it up
+wide of the mark
+win the day
+wipe someone's eye
+wipe the floor with
+wipe the slate clean
+with a vengeance
+with a view to
+with a will
+with bated breath
+with knobs on
+with open arms
+wither on the vine
+within an ace of
+within living memory
+without fail
+word of mouth
+work like a charm
+work to rule
+work wonders
+work your fingers to the bone
+wouldn't hurt a fly
+writ large
+yes and no
+yesterday's news
+you can't have your cake and eat it
+you can't teach an old dog new tricks
+you could have knocked me down with a feather
+you pays your money and you takes your choice
+you scratch my back and I'll scratch yours
+young blood
+your guess is as good as mine

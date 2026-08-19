@@ -24,3 +24,11 @@ def test_no_hits_returns_empty_list():
 def test_multiple_distinct_hits_deduped():
     text = "utilize this to leverage that, and utilize it again."
     assert find_matches(text, ["utilize", "leverage"]) == ["utilize", "leverage"]
+
+
+def test_a_term_ending_in_punctuation_matches():
+    assert find_matches("Late again? My foot! I saw you.", ["my foot!"]) == ["my foot!"]
+
+
+def test_a_term_ending_in_punctuation_still_respects_the_boundary_before_it():
+    assert find_matches("The dummy footer!", ["my foot!"]) == []

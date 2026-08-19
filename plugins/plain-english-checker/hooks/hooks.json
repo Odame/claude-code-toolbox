@@ -1,5 +1,5 @@
 {
-  "description": "Checks newly written or edited text against the plain-english banned-word list and word-frequency scoring, and seeds the wordlist and config on session start.",
+  "description": "Checks newly written or edited text against the plain-english banned-word list, word-frequency scoring, sentence readability, and the bundled idiom list, and seeds the wordlist and config on session start.",
   "hooks": {
     "PostToolUse": [
       {

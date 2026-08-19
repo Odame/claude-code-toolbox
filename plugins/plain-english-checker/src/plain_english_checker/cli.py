@@ -9,11 +9,13 @@ from pathlib import Path
 from plain_english_checker.config import (
     LIVE_CONFIG_PATH,
     CheckerSettings,
+    IdiomSettings,
     TextstatSettings,
     WordfreqSettings,
     load_config,
 )
 from plain_english_checker.hook_payload import changed_text_segments, session_id_of
+from plain_english_checker.idiom_check import IDIOM_CHECK_NAME, idioms_used
 from plain_english_checker.matcher import find_matches
 from plain_english_checker.textstat_check import TEXTSTAT_CHECK_NAME, hard_to_read_sentences
 from plain_english_checker.tracking import (
@@ -78,6 +80,7 @@ def _warn_findings(payload: dict, written_text: str, settings: CheckerSettings) 
     for check_name, finding in (
         (WORDFREQ_CHECK_NAME, _wordfreq_finding(written_text, settings.wordfreq)),
         (TEXTSTAT_CHECK_NAME, _textstat_finding(written_text, settings.textstat)),
+        (IDIOM_CHECK_NAME, _idiom_finding(written_text, settings.idiom)),
     ):
         if finding:
             _record_outcome_without_failing_the_check(payload, check_name, WARN_OUTCOME)
@@ -114,6 +117,19 @@ def _textstat_finding(written_text: str, settings: TextstatSettings) -> str:
         "Split each one into shorter sentences and use everyday words. Lower "
         f"flesch_reading_ease_threshold in {LIVE_CONFIG_PATH} when this warning "
         "comes too often."
+    )
+
+
+def _idiom_finding(written_text: str, settings: IdiomSettings) -> str:
+    if not settings.enabled:
+        return ""
+    hits = idioms_used(written_text, allowlist=settings.allowlist)
+    if not hits:
+        return ""
+    return (
+        f"Idiom(s) used: {', '.join(hits)}. Readers who learned English as a second "
+        "language will not know them. Say the plain meaning instead, or add an idiom to "
+        f"the idiom allowlist in {LIVE_CONFIG_PATH} when it is the right wording to keep."
     )
 
 

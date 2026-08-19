@@ -145,9 +145,59 @@ def test_a_textstat_section_of_the_wrong_shape_falls_back_to_defaults(tmp_path: 
 
 
 def test_each_check_reads_its_own_section(tmp_path: Path):
-    path = write_config(tmp_path, "[wordfreq]\nenabled = false\n\n[textstat]\nenabled = true\n")
+    path = write_config(
+        tmp_path,
+        "[wordfreq]\nenabled = false\n\n[textstat]\nenabled = true\n\n[idiom]\nenabled = false\n",
+    )
 
     config = load_config(path)
 
     assert config.wordfreq.enabled is False
     assert config.textstat.enabled is True
+    assert config.idiom.enabled is False
+
+
+def test_missing_config_file_yields_idiom_defaults(tmp_path: Path):
+    config = load_config(tmp_path / "does-not-exist.toml")
+
+    assert config.idiom.enabled is True
+    assert config.idiom.allowlist == ()
+
+
+def test_idiom_section_is_read(tmp_path: Path):
+    path = write_config(
+        tmp_path, '[idiom]\nenabled = false\nallowlist = ["kick the bucket", "bear fruit"]\n'
+    )
+
+    config = load_config(path)
+
+    assert config.idiom.enabled is False
+    assert config.idiom.allowlist == ("kick the bucket", "bear fruit")
+
+
+def test_absent_idiom_keys_keep_their_defaults(tmp_path: Path):
+    config = load_config(write_config(tmp_path, '[idiom]\nallowlist = ["bear fruit"]\n'))
+
+    assert config.idiom.enabled is True
+    assert config.idiom.allowlist == ("bear fruit",)
+
+
+def test_idiom_values_of_the_wrong_type_fall_back_to_defaults(tmp_path: Path):
+    path = write_config(tmp_path, '[idiom]\nenabled = "yes"\nallowlist = "bear fruit"\n')
+
+    config = load_config(path)
+
+    assert config.idiom.enabled is True
+    assert config.idiom.allowlist == ()
+
+
+def test_non_string_idiom_allowlist_entries_are_dropped(tmp_path: Path):
+    path = write_config(tmp_path, '[idiom]\nallowlist = ["bear fruit", 7, true]\n')
+
+    assert load_config(path).idiom.allowlist == ("bear fruit",)
+
+
+def test_an_idiom_section_of_the_wrong_shape_falls_back_to_defaults(tmp_path: Path):
+    config = load_config(write_config(tmp_path, 'idiom = "on"\n'))
+
+    assert config.idiom.enabled is True

@@ -10,6 +10,7 @@ LIVE_CONFIG_PATH = LIVE_WORDLIST_PATH.parent / "config.toml"
 
 WORDFREQ_SECTION = "wordfreq"
 TEXTSTAT_SECTION = "textstat"
+IDIOM_SECTION = "idiom"
 
 DEFAULT_WORDFREQ_ZIPF_THRESHOLD = 2.5
 
@@ -33,9 +34,16 @@ class TextstatSettings:
 
 
 @dataclass(frozen=True)
+class IdiomSettings:
+    enabled: bool = True
+    allowlist: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class CheckerSettings:
     wordfreq: WordfreqSettings = field(default_factory=WordfreqSettings)
     textstat: TextstatSettings = field(default_factory=TextstatSettings)
+    idiom: IdiomSettings = field(default_factory=IdiomSettings)
 
 
 def load_config(path: Path) -> CheckerSettings:
@@ -49,6 +57,7 @@ def load_config(path: Path) -> CheckerSettings:
     return CheckerSettings(
         wordfreq=_wordfreq_settings(_section(document, WORDFREQ_SECTION)),
         textstat=_textstat_settings(_section(document, TEXTSTAT_SECTION)),
+        idiom=_idiom_settings(_section(document, IDIOM_SECTION)),
     )
 
 
@@ -77,6 +86,14 @@ def _textstat_settings(section: dict) -> TextstatSettings:
         flesch_reading_ease_threshold=_number(
             section, "flesch_reading_ease_threshold", defaults.flesch_reading_ease_threshold
         ),
+    )
+
+
+def _idiom_settings(section: dict) -> IdiomSettings:
+    defaults = IdiomSettings()
+    return IdiomSettings(
+        enabled=_boolean(section, "enabled", defaults.enabled),
+        allowlist=_string_tuple(section, "allowlist"),
     )
 
 
