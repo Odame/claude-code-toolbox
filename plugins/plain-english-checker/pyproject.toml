@@ -1,9 +1,9 @@
 [project]
 name = "plain-english-checker"
 version = "0.1.0"
-description = "PostToolUse hook that blocks banned jargon/complex wording on Write/Edit"
+description = "PostToolUse hook that blocks banned jargon and warns on uncommon words on Write/Edit"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["wordfreq>=3.1.1"]
 
 [project.scripts]
 plain-english-checker = "plain_english_checker.cli:main"
