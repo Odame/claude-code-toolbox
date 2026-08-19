@@ -33,22 +33,42 @@ To use a plugin from this marketplace in your own Claude Code setup:
 
 ## plain-english-checker
 
-Blocks jargon and overly complex wording before it lands in a file you're writing or editing.
+Blocks jargon and flags uncommon words before they land in a file you're writing or editing.
 
 **How it works:**
 
-- A `PostToolUse` hook (matcher `Write|Edit`) reads the file that was just written/edited and
-  checks it against your live banned-term list. On a match, the hook exits with code 2 and
-  writes a message to stderr — Claude Code shows that to Claude as feedback, telling it to
-  re-read the root `CLAUDE.md` and rewrite with simpler wording, without dumping the full
-  banned list back into context.
-- A `SessionStart` hook seeds your live wordlist the first time it's missing, from a small
-  generic seed file shipped with the plugin (`utilize`, `leverage`, `in order to`, ...). It
-  never touches the live list again once it exists, so plugin updates can't clobber your
+- A `PostToolUse` hook (matcher `Write|Edit|MultiEdit`) reads only the text the tool just
+  wrote — a `Write`'s whole content, or each `Edit`/`MultiEdit` replacement. Untouched parts
+  of the file are never scanned.
+- The **banned-word check** matches that text against your live banned-term list. On a match
+  the hook exits with code 2 and writes a message to stderr — Claude Code shows that to Claude
+  as feedback, telling it to re-read the root `CLAUDE.md` and rewrite with simpler wording,
+  without dumping the full banned list back into context.
+- The **wordfreq check** scores every written word against corpus frequency and flags the rare
+  ones. It never blocks: the finding goes back to Claude as `additionalContext` on exit 0, so
+  Claude can fix the wording in the same turn. Code identifiers, acronyms, numbers, URLs, and
+  capitalized words are skipped, so a variable name is never flagged as rare.
+- A `SessionStart` hook seeds your live wordlist and your `config.toml` the first time each is
+  missing, from seed files shipped with the plugin (`utilize`, `leverage`, `in order to`, ...).
+  It never touches a live file again once it exists, so plugin updates can't clobber your
   additions.
 - Your live, growing list lives at `~/.claude/plain-english-checker/banned-words.txt` —
   outside the plugin's own directory, so it survives plugin updates. One term or phrase per
   line; `#` for comments.
+
+**Tuning** — `~/.claude/plain-english-checker/config.toml`:
+
+```toml
+[wordfreq]
+enabled = true
+zipf_threshold = 2.5
+allowlist = []
+```
+
+`zipf_threshold` is a Zipf frequency, running from 0 (never seen) to about 7 (`the`); a word
+scoring below it is flagged. Raise it to catch more words, lower it if the warnings come too
+often. Any term in `allowlist` is never flagged, however rare it is. These same defaults apply
+when the file is missing.
 
 **The `ban-term` skill** lets you grow the list from conversation — say things like "ban the
 word utilize" or "add 'leverage' to the banned words list" and Claude appends it to your live

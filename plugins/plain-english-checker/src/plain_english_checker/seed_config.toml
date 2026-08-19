@@ -1,0 +1,13 @@
+# Per-check tuning for plain-english-checker.
+# Copied here on first run — edit this file, not the copy inside the plugin.
+# Delete any line to fall back to the built-in default.
+
+[wordfreq]
+# Flags words that are rare in everyday English. Never blocks an edit.
+enabled = true
+# A word is flagged when its Zipf frequency falls below this number.
+# Zipf runs from 0 (never seen) to about 7 ("the"). Raise it to catch more words,
+# lower it if the warnings come too often.
+zipf_threshold = 2.5
+# Words this check must never flag, however rare they are.
+allowlist = []
