@@ -1,9 +1,9 @@
 {
-  "description": "Checks written/edited files against the plain-english banned-word list, and seeds that list on session start.",
+  "description": "Checks newly written or edited text against the plain-english banned-word list, and seeds that list on session start.",
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
