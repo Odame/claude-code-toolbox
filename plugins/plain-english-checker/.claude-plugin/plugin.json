@@ -2,7 +2,7 @@
   "name": "plain-english-checker",
   "displayName": "Plain English Checker",
   "version": "0.1.0",
-  "description": "Blocks banned jargon on Write/Edit, warns on uncommon words and hard-to-read sentences, and lets you grow the ban list from conversation.",
+  "description": "Blocks banned jargon on Write/Edit, warns on uncommon words, hard-to-read sentences, and idioms, and lets you grow the ban list from conversation.",
   "author": {
     "name": "Prince Odame"
   },

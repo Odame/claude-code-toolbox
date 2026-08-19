@@ -33,8 +33,8 @@ To use a plugin from this marketplace in your own Claude Code setup:
 
 ## plain-english-checker
 
-Blocks jargon and flags uncommon words and hard-to-read sentences before they land in a file
-you're writing or editing.
+Blocks jargon and flags uncommon words, hard-to-read sentences, and idioms before they land in
+a file you're writing or editing.
 
 **How it works:**
 
@@ -55,6 +55,12 @@ you're writing or editing.
   Only finished sentences count — text with no `.`, `!`, or `?` at the end is a heading, a
   bullet, or a line of code, and is left alone. Sentences under 8 words and URLs are not
   scored, because the formula is unreliable on them.
+- The **idiom check** matches the written text against a bundled list of 1,756 idioms and
+  clichés, using the same exact-phrase matcher as the banned-word check. It never blocks, and
+  reports each idiom back as `additionalContext`. Only the base form of an idiom is listed, so
+  `kick the bucket` is caught but `kicked the bucket` is not — a known gap, recorded in
+  `docs/adr/0005-defer-linguistic-analysis-phase.md`. The list comes from the MAGPIE corpus
+  (CC BY 4.0); see `plugins/plain-english-checker/NOTICE.md` for the full attribution.
 - A `SessionStart` hook seeds your live wordlist and your `config.toml` the first time each is
   missing, from seed files shipped with the plugin (`utilize`, `leverage`, `in order to`, ...).
   It never touches a live file again once it exists, so plugin updates can't clobber your
@@ -74,6 +80,10 @@ allowlist = []
 [textstat]
 enabled = true
 flesch_reading_ease_threshold = 50.0
+
+[idiom]
+enabled = true
+allowlist = []
 ```
 
 `zipf_threshold` is a Zipf frequency, running from 0 (never seen) to about 7 (`the`); a word
@@ -84,6 +94,9 @@ often. Any term in `allowlist` is never flagged, however rare it is.
 sentence scoring below it is flagged. 60 and above reads as plain English and below 50 reads
 as college level, so 50 is the default. The textstat check has no `allowlist` — it scores
 whole sentences, not single terms, so there is nothing to list.
+
+The idiom check has no threshold — an idiom is either on the bundled list or it isn't. Put an
+idiom in its `allowlist`, in the same base form the list uses, to stop it being flagged.
 
 These same defaults apply when the file is missing.
 

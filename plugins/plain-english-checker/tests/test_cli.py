@@ -528,6 +528,153 @@ def test_a_block_and_both_warns_on_one_edit_keep_every_output(
     ]
 
 
+def test_an_idiom_warns_without_blocking(
+    monkeypatch, capsys, wordlist_path, tracking_database_path
+):
+    feed_payload(
+        monkeypatch,
+        {
+            "session_id": "session-a",
+            "tool_name": "Edit",
+            "tool_input": {"new_string": "We kick the bucket on it."},
+        },
+    )
+
+    exit_code = cli.check([])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert captured.err == ""
+    assert "kick the bucket" in additional_context(captured.out)
+    assert tracked_rows(tracking_database_path) == [("session-a", "idiom", "warn", 1)]
+
+
+def test_writing_without_an_idiom_does_not_warn(
+    monkeypatch, capsys, wordlist_path, tracking_database_path
+):
+    feed_payload(
+        monkeypatch,
+        {"tool_name": "Edit", "tool_input": {"new_string": "We stopped work on it."}},
+    )
+
+    exit_code = cli.check([])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert captured.out == ""
+    assert tracked_rows(tracking_database_path) == []
+
+
+def test_an_inflected_idiom_does_not_warn(
+    monkeypatch, capsys, wordlist_path, tracking_database_path
+):
+    feed_payload(
+        monkeypatch,
+        {"tool_name": "Edit", "tool_input": {"new_string": "He kicked the bucket."}},
+    )
+
+    assert cli.check([]) == 0
+    assert capsys.readouterr().out == ""
+
+
+def test_a_missing_config_file_leaves_the_idiom_check_running(
+    monkeypatch, capsys, wordlist_path, tracking_database_path, config_path
+):
+    assert not config_path.exists()
+    feed_payload(
+        monkeypatch,
+        {"tool_name": "Edit", "tool_input": {"new_string": "We kick the bucket on it."}},
+    )
+
+    assert cli.check([]) == 0
+    assert "kick the bucket" in additional_context(capsys.readouterr().out)
+
+
+def test_disabling_idiom_stops_the_warning(
+    monkeypatch, capsys, wordlist_path, tracking_database_path, config_path
+):
+    config_path.write_text("[idiom]\nenabled = false\n", encoding="utf-8")
+    feed_payload(
+        monkeypatch,
+        {"tool_name": "Edit", "tool_input": {"new_string": "We kick the bucket on it."}},
+    )
+
+    exit_code = cli.check([])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert captured.out == ""
+    assert tracked_rows(tracking_database_path) == []
+
+
+def test_an_allowlisted_idiom_is_not_warned_about(
+    monkeypatch, capsys, wordlist_path, tracking_database_path, config_path
+):
+    config_path.write_text('[idiom]\nallowlist = ["kick the bucket"]\n', encoding="utf-8")
+    feed_payload(
+        monkeypatch,
+        {"tool_name": "Edit", "tool_input": {"new_string": "We kick the bucket on it."}},
+    )
+
+    exit_code = cli.check([])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert captured.out == ""
+    assert tracked_rows(tracking_database_path) == []
+
+
+def test_disabling_idiom_leaves_the_other_checks_running(
+    monkeypatch, capsys, wordlist_path, tracking_database_path, config_path
+):
+    config_path.write_text("[idiom]\nenabled = false\n", encoding="utf-8")
+    feed_payload(
+        monkeypatch,
+        {
+            "tool_name": "Edit",
+            "tool_input": {"new_string": "An idempotent day. We kick the bucket on it."},
+        },
+    )
+
+    assert cli.check([]) == 0
+    finding = additional_context(capsys.readouterr().out)
+    assert "idempotent" in finding
+    assert "kick the bucket" not in finding
+
+
+def test_a_block_and_all_three_warns_on_one_edit_keep_every_output(
+    monkeypatch, capsys, wordlist_path, tracking_database_path
+):
+    feed_payload(
+        monkeypatch,
+        {
+            "session_id": "session-a",
+            "tool_name": "Edit",
+            "tool_input": {
+                "new_string": (
+                    f"Please utilize this idempotent change. We kick the bucket. {HARD_TO_READ}"
+                )
+            },
+        },
+    )
+
+    exit_code = cli.check([])
+    captured = capsys.readouterr()
+
+    assert exit_code == 2
+    assert "utilize" in captured.err
+    finding = additional_context(captured.out)
+    assert "idempotent" in finding
+    assert HARD_TO_READ in finding
+    assert "kick the bucket" in finding
+    assert sorted(tracked_rows(tracking_database_path)) == [
+        ("session-a", "banned-word", "block", 1),
+        ("session-a", "idiom", "warn", 1),
+        ("session-a", "textstat", "warn", 1),
+        ("session-a", "wordfreq", "warn", 1),
+    ]
+
+
 def test_seed_creates_live_wordlist_when_missing(monkeypatch, tmp_path):
     path = tmp_path / "nested" / "banned-words.txt"
     monkeypatch.setattr(cli, "LIVE_WORDLIST_PATH", path)

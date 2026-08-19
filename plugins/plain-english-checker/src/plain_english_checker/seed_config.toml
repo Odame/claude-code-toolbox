@@ -21,3 +21,11 @@ enabled = true
 # often. Sentences under 8 words are never scored — the formula is unreliable on them.
 flesch_reading_ease_threshold = 50.0
 # This check scores whole sentences, not single terms, so it has no allowlist.
+
+[idiom]
+# Flags idioms and cliches from the bundled MAGPIE-derived list. Never blocks an edit.
+# Only the base form of an idiom is matched: "kick the bucket" is caught, "kicked the
+# bucket" is not.
+enabled = true
+# Idioms this check must never flag. Write each one in the same base form the list uses.
+allowlist = []
