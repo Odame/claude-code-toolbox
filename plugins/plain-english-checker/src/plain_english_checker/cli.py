@@ -1,24 +1,34 @@
 """Console-script entry point for the plain-english-checker hook."""
 
 import json
+import sqlite3
 import sys
 from importlib import resources
-from pathlib import Path
 
+from plain_english_checker.hook_payload import changed_text_segments, session_id_of
 from plain_english_checker.matcher import find_matches
+from plain_english_checker.tracking import (
+    BLOCK_OUTCOME,
+    TRACKING_DATABASE_PATH,
+    record_outcome,
+)
 from plain_english_checker.wordlist import LIVE_WORDLIST_PATH, load_wordlist
 
 SEED_WORDLIST_RESOURCE = "seed_wordlist.txt"
+BANNED_WORD_CHECK_NAME = "banned-word"
 
 
-def _hook_target_path(payload: dict) -> str | None:
-    tool_response = payload.get("tool_response")
-    if isinstance(tool_response, dict) and tool_response.get("filePath"):
-        return tool_response["filePath"]
-    tool_input = payload.get("tool_input")
-    if isinstance(tool_input, dict) and tool_input.get("file_path"):
-        return tool_input["file_path"]
-    return None
+def _record_outcome_without_failing_the_check(payload: dict, check_name: str, outcome: str) -> None:
+    """Tracking is a usage signal, so a broken store must never change a check's outcome."""
+    try:
+        record_outcome(
+            TRACKING_DATABASE_PATH,
+            session_id=session_id_of(payload),
+            check_name=check_name,
+            outcome=outcome,
+        )
+    except (sqlite3.Error, OSError):
+        pass
 
 
 def check(argv: list[str]) -> int:
@@ -28,23 +38,19 @@ def check(argv: list[str]) -> int:
     except (json.JSONDecodeError, ValueError):
         return 0
 
-    file_path = _hook_target_path(payload)
-    if not file_path:
-        return 0
-
-    target = Path(file_path)
-    if not target.is_file():
+    segments = changed_text_segments(payload)
+    if not segments:
         return 0
 
     banned_terms = load_wordlist(LIVE_WORDLIST_PATH)
     if not banned_terms:
         return 0
 
-    text = target.read_text(encoding="utf-8", errors="ignore")
-    hits = find_matches(text, banned_terms)
+    hits = find_matches("\n".join(segments), banned_terms)
     if not hits:
         return 0
 
+    _record_outcome_without_failing_the_check(payload, BANNED_WORD_CHECK_NAME, BLOCK_OUTCOME)
     print(
         "Banned word(s) used: "
         f"{', '.join(hits)}. Re-read the root CLAUDE.md (Simplified Technical "
