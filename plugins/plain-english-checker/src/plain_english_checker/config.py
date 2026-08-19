@@ -9,8 +9,14 @@ from plain_english_checker.wordlist import LIVE_WORDLIST_PATH
 LIVE_CONFIG_PATH = LIVE_WORDLIST_PATH.parent / "config.toml"
 
 WORDFREQ_SECTION = "wordfreq"
+TEXTSTAT_SECTION = "textstat"
 
 DEFAULT_WORDFREQ_ZIPF_THRESHOLD = 2.5
+
+# On the standard Flesch bands, below 50 is "difficult" — college-level reading. The
+# checker writes for readers who often have English as a second language, so anything
+# harder than that is worth a nudge, while plain writing at 60 and above stays quiet.
+DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD = 50.0
 
 
 @dataclass(frozen=True)
@@ -21,8 +27,15 @@ class WordfreqSettings:
 
 
 @dataclass(frozen=True)
+class TextstatSettings:
+    enabled: bool = True
+    flesch_reading_ease_threshold: float = DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD
+
+
+@dataclass(frozen=True)
 class CheckerSettings:
     wordfreq: WordfreqSettings = field(default_factory=WordfreqSettings)
+    textstat: TextstatSettings = field(default_factory=TextstatSettings)
 
 
 def load_config(path: Path) -> CheckerSettings:
@@ -33,7 +46,10 @@ def load_config(path: Path) -> CheckerSettings:
     allowed to take a check offline by accident.
     """
     document = _read_document(path)
-    return CheckerSettings(wordfreq=_wordfreq_settings(_section(document, WORDFREQ_SECTION)))
+    return CheckerSettings(
+        wordfreq=_wordfreq_settings(_section(document, WORDFREQ_SECTION)),
+        textstat=_textstat_settings(_section(document, TEXTSTAT_SECTION)),
+    )
 
 
 def _read_document(path: Path) -> dict:
@@ -51,6 +67,16 @@ def _wordfreq_settings(section: dict) -> WordfreqSettings:
         enabled=_boolean(section, "enabled", defaults.enabled),
         zipf_threshold=_number(section, "zipf_threshold", defaults.zipf_threshold),
         allowlist=_string_tuple(section, "allowlist"),
+    )
+
+
+def _textstat_settings(section: dict) -> TextstatSettings:
+    defaults = TextstatSettings()
+    return TextstatSettings(
+        enabled=_boolean(section, "enabled", defaults.enabled),
+        flesch_reading_ease_threshold=_number(
+            section, "flesch_reading_ease_threshold", defaults.flesch_reading_ease_threshold
+        ),
     )
 
 

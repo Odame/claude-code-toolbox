@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from plain_english_checker.config import (
+    DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD,
     DEFAULT_WORDFREQ_ZIPF_THRESHOLD,
     load_config,
 )
@@ -54,8 +55,8 @@ def test_integer_threshold_is_read_as_a_number(tmp_path: Path):
     assert config.wordfreq.zipf_threshold == 3.0
 
 
-def test_sections_for_other_checks_are_ignored(tmp_path: Path):
-    path = write_config(tmp_path, "[textstat]\nenabled = false\n\n[wordfreq]\nenabled = false\n")
+def test_sections_for_unknown_checks_are_ignored(tmp_path: Path):
+    path = write_config(tmp_path, "[not-a-check]\nenabled = false\n\n[wordfreq]\nenabled = false\n")
 
     assert load_config(path).wordfreq.enabled is False
 
@@ -90,3 +91,63 @@ def test_a_wordfreq_section_of_the_wrong_shape_falls_back_to_defaults(tmp_path: 
     config = load_config(write_config(tmp_path, 'wordfreq = "on"\n'))
 
     assert config.wordfreq.enabled is True
+
+
+def test_missing_config_file_yields_textstat_defaults(tmp_path: Path):
+    config = load_config(tmp_path / "does-not-exist.toml")
+
+    assert config.textstat.enabled is True
+    assert (
+        config.textstat.flesch_reading_ease_threshold
+        == DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD
+    )
+
+
+def test_textstat_section_is_read(tmp_path: Path):
+    path = write_config(
+        tmp_path, "[textstat]\nenabled = false\nflesch_reading_ease_threshold = 30\n"
+    )
+
+    config = load_config(path)
+
+    assert config.textstat.enabled is False
+    assert config.textstat.flesch_reading_ease_threshold == 30.0
+
+
+def test_absent_textstat_keys_keep_their_defaults(tmp_path: Path):
+    config = load_config(write_config(tmp_path, "[textstat]\nenabled = false\n"))
+
+    assert config.textstat.enabled is False
+    assert (
+        config.textstat.flesch_reading_ease_threshold
+        == DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD
+    )
+
+
+def test_textstat_values_of_the_wrong_type_fall_back_to_defaults(tmp_path: Path):
+    path = write_config(
+        tmp_path, '[textstat]\nenabled = "yes"\nflesch_reading_ease_threshold = "hard"\n'
+    )
+
+    config = load_config(path)
+
+    assert config.textstat.enabled is True
+    assert (
+        config.textstat.flesch_reading_ease_threshold
+        == DEFAULT_TEXTSTAT_FLESCH_READING_EASE_THRESHOLD
+    )
+
+
+def test_a_textstat_section_of_the_wrong_shape_falls_back_to_defaults(tmp_path: Path):
+    config = load_config(write_config(tmp_path, 'textstat = "on"\n'))
+
+    assert config.textstat.enabled is True
+
+
+def test_each_check_reads_its_own_section(tmp_path: Path):
+    path = write_config(tmp_path, "[wordfreq]\nenabled = false\n\n[textstat]\nenabled = true\n")
+
+    config = load_config(path)
+
+    assert config.wordfreq.enabled is False
+    assert config.textstat.enabled is True
