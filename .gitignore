@@ -1,1 +1,17 @@
 .claude/
+
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/
+*.spec
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+uv.lock.bak
+
+# Future optional PyInstaller/Nuitka compilation output (unimplemented Makefile stub)
+*.build/
+*.dist/
+*.onefile-build/

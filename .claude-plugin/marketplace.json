@@ -1,0 +1,13 @@
+{
+  "name": "claude-code-toolbox",
+  "owner": {
+    "name": "Prince Odame"
+  },
+  "plugins": [
+    {
+      "name": "plain-english-checker",
+      "source": "./plugins/plain-english-checker",
+      "description": "Blocks banned jargon/complex wording on Write/Edit and lets you grow the ban list from conversation."
+    }
+  ]
+}
