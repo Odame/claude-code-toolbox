@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from plain_english_checker import cli
+from plain_english_checker import banned_word_check, cli
 from plain_english_checker.config import CheckerSettings, load_config
 
 
@@ -13,7 +13,7 @@ from plain_english_checker.config import CheckerSettings, load_config
 def wordlist_path(monkeypatch, tmp_path: Path) -> Path:
     path = tmp_path / "banned-words.txt"
     path.write_text("utilize\nleverage\n", encoding="utf-8")
-    monkeypatch.setattr(cli, "LIVE_WORDLIST_PATH", path)
+    monkeypatch.setattr(banned_word_check, "LIVE_WORDLIST_PATH", path)
     return path
 
 
@@ -183,7 +183,7 @@ def test_clean_new_text_produces_no_output(
 
 
 def test_missing_wordlist_produces_no_output(monkeypatch, capsys, tmp_path, tracking_database_path):
-    monkeypatch.setattr(cli, "LIVE_WORDLIST_PATH", tmp_path / "does-not-exist.txt")
+    monkeypatch.setattr(banned_word_check, "LIVE_WORDLIST_PATH", tmp_path / "does-not-exist.txt")
     feed_payload(
         monkeypatch,
         {"tool_name": "Edit", "tool_input": {"new_string": "please utilize this"}},
@@ -301,7 +301,7 @@ def test_a_block_and_a_warn_on_the_same_edit_keep_both_outputs(
 def test_an_uncommon_word_warns_even_without_a_wordlist(
     monkeypatch, capsys, tmp_path, tracking_database_path
 ):
-    monkeypatch.setattr(cli, "LIVE_WORDLIST_PATH", tmp_path / "does-not-exist.txt")
+    monkeypatch.setattr(banned_word_check, "LIVE_WORDLIST_PATH", tmp_path / "does-not-exist.txt")
     feed_payload(
         monkeypatch,
         {"tool_name": "Edit", "tool_input": {"new_string": "the change was idempotent"}},

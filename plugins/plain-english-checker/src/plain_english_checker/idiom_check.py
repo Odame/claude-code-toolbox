@@ -3,6 +3,8 @@
 from collections.abc import Iterable
 from importlib import resources
 
+from plain_english_checker.checks import CheckSpec, Severity, register_check
+from plain_english_checker.config import LIVE_CONFIG_PATH, CheckerSettings, IdiomSettings
 from plain_english_checker.matcher import find_matches
 from plain_english_checker.wordlist import parse_wordlist
 
@@ -31,3 +33,30 @@ def bundled_idioms() -> list[str]:
         .read_text(encoding="utf-8")
     )
     return parse_wordlist(text)
+
+
+def _settings_of(settings: CheckerSettings) -> IdiomSettings:
+    return settings.idiom
+
+
+def _detect(text: str, settings: IdiomSettings) -> list[str]:
+    return idioms_used(text, allowlist=settings.allowlist)
+
+
+def _describe(hits: list[str]) -> str:
+    return (
+        f"Idiom(s) used: {', '.join(hits)}. Readers who learned English as a second "
+        "language will not know them. Say the plain meaning instead, or add an idiom to "
+        f"the idiom allowlist in {LIVE_CONFIG_PATH} when it is the right wording to keep."
+    )
+
+
+register_check(
+    CheckSpec(
+        name=IDIOM_CHECK_NAME,
+        severity=Severity.WARN,
+        settings_of=_settings_of,
+        detect=_detect,
+        describe=_describe,
+    )
+)
