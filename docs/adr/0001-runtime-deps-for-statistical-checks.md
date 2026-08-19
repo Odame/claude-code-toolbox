@@ -5,4 +5,4 @@
 ## Considered Options
 
 - **Vendor/reimplement inline** — keeps the zero-dep policy intact, but duplicates well-tested corpus data and scoring logic that these libraries already provide.
-- **Add as runtime deps** (chosen) — small, pure-Python packages (wordfreq bundles compressed frequency data; textstat has no heavy transitive deps), low install cost via `uv`.
+- **Add as runtime deps** (chosen) — small, pure-Python packages (wordfreq bundles compressed frequency data; textstat pulls in `nltk`, `pyphen`, and a handful of other transitive deps, but nothing is downloaded at runtime and the measured import cost is ~0.18s), low install cost via `uv`.
