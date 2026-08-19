@@ -13,6 +13,7 @@ plugins/
     .claude-plugin/plugin.json
     hooks/hooks.json
     skills/ban-term/SKILL.md
+    skills/unban-term/SKILL.md
     src/plain_english_checker/
     tests/
     pyproject.toml
@@ -103,6 +104,12 @@ These same defaults apply when the file is missing.
 **The `ban-term` skill** lets you grow the list from conversation — say things like "ban the
 word utilize" or "add 'leverage' to the banned words list" and Claude appends it to your live
 list (skipping anything already there, case-insensitively).
+
+**The `unban-term` skill** undoes a flagged term everywhere in one go — say "stop flagging
+lattice" or "unban 'leverage'" and Claude removes it from your live list and adds it to both
+the `wordfreq` and the `idiom` allowlist in your `config.toml`, then tells you which of the
+three it actually changed. The textstat check has no allowlist, so there is nothing to undo
+there.
 
 Matching is case-insensitive and whole-word/whole-phrase (`cat` won't match inside `category`).
 
