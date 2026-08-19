@@ -9,11 +9,13 @@ from pathlib import Path
 from plain_english_checker.config import (
     LIVE_CONFIG_PATH,
     CheckerSettings,
+    TextstatSettings,
     WordfreqSettings,
     load_config,
 )
 from plain_english_checker.hook_payload import changed_text_segments, session_id_of
 from plain_english_checker.matcher import find_matches
+from plain_english_checker.textstat_check import TEXTSTAT_CHECK_NAME, hard_to_read_sentences
 from plain_english_checker.tracking import (
     BLOCK_OUTCOME,
     TRACKING_DATABASE_PATH,
@@ -73,10 +75,13 @@ def check(argv: list[str]) -> int:
 
 def _warn_findings(payload: dict, written_text: str, settings: CheckerSettings) -> list[str]:
     findings = []
-    wordfreq_finding = _wordfreq_finding(written_text, settings.wordfreq)
-    if wordfreq_finding:
-        _record_outcome_without_failing_the_check(payload, WORDFREQ_CHECK_NAME, WARN_OUTCOME)
-        findings.append(wordfreq_finding)
+    for check_name, finding in (
+        (WORDFREQ_CHECK_NAME, _wordfreq_finding(written_text, settings.wordfreq)),
+        (TEXTSTAT_CHECK_NAME, _textstat_finding(written_text, settings.textstat)),
+    ):
+        if finding:
+            _record_outcome_without_failing_the_check(payload, check_name, WARN_OUTCOME)
+            findings.append(finding)
     return findings
 
 
@@ -92,6 +97,23 @@ def _wordfreq_finding(written_text: str, settings: WordfreqSettings) -> str:
         f"Uncommon word(s) used: {', '.join(hits)}. Most readers will not know them. "
         "Rewrite with everyday words, or add a word to the wordfreq allowlist in "
         f"{LIVE_CONFIG_PATH} when it is the right word to keep."
+    )
+
+
+def _textstat_finding(written_text: str, settings: TextstatSettings) -> str:
+    if not settings.enabled:
+        return ""
+    hits = hard_to_read_sentences(
+        written_text, flesch_reading_ease_threshold=settings.flesch_reading_ease_threshold
+    )
+    if not hits:
+        return ""
+    listed = "\n".join(f"- {sentence}" for sentence in hits)
+    return (
+        f"Sentence(s) that read too hard:\n{listed}\n"
+        "Split each one into shorter sentences and use everyday words. Lower "
+        f"flesch_reading_ease_threshold in {LIVE_CONFIG_PATH} when this warning "
+        "comes too often."
     )
 
 

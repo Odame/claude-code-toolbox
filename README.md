@@ -33,7 +33,8 @@ To use a plugin from this marketplace in your own Claude Code setup:
 
 ## plain-english-checker
 
-Blocks jargon and flags uncommon words before they land in a file you're writing or editing.
+Blocks jargon and flags uncommon words and hard-to-read sentences before they land in a file
+you're writing or editing.
 
 **How it works:**
 
@@ -48,6 +49,12 @@ Blocks jargon and flags uncommon words before they land in a file you're writing
   ones. It never blocks: the finding goes back to Claude as `additionalContext` on exit 0, so
   Claude can fix the wording in the same turn. Code identifiers, acronyms, numbers, URLs, and
   capitalized words are skipped, so a variable name is never flagged as rare.
+- The **textstat check** scores each written sentence on its own for Flesch Reading Ease and
+  flags the ones that read too hard, so a single dense sentence is caught inside an otherwise
+  simple edit. It never blocks either, and reports the sentence back as `additionalContext`.
+  Only finished sentences count — text with no `.`, `!`, or `?` at the end is a heading, a
+  bullet, or a line of code, and is left alone. Sentences under 8 words and URLs are not
+  scored, because the formula is unreliable on them.
 - A `SessionStart` hook seeds your live wordlist and your `config.toml` the first time each is
   missing, from seed files shipped with the plugin (`utilize`, `leverage`, `in order to`, ...).
   It never touches a live file again once it exists, so plugin updates can't clobber your
@@ -63,12 +70,22 @@ Blocks jargon and flags uncommon words before they land in a file you're writing
 enabled = true
 zipf_threshold = 2.5
 allowlist = []
+
+[textstat]
+enabled = true
+flesch_reading_ease_threshold = 50.0
 ```
 
 `zipf_threshold` is a Zipf frequency, running from 0 (never seen) to about 7 (`the`); a word
 scoring below it is flagged. Raise it to catch more words, lower it if the warnings come too
-often. Any term in `allowlist` is never flagged, however rare it is. These same defaults apply
-when the file is missing.
+often. Any term in `allowlist` is never flagged, however rare it is.
+
+`flesch_reading_ease_threshold` runs from about 0 (very hard) to about 100 (very easy); a
+sentence scoring below it is flagged. 60 and above reads as plain English and below 50 reads
+as college level, so 50 is the default. The textstat check has no `allowlist` — it scores
+whole sentences, not single terms, so there is nothing to list.
+
+These same defaults apply when the file is missing.
 
 **The `ban-term` skill** lets you grow the list from conversation — say things like "ban the
 word utilize" or "add 'leverage' to the banned words list" and Claude appends it to your live

@@ -11,3 +11,13 @@ enabled = true
 zipf_threshold = 2.5
 # Words this check must never flag, however rare they are.
 allowlist = []
+
+[textstat]
+# Flags sentences that read too hard. Never blocks an edit.
+enabled = true
+# A sentence is flagged when its Flesch Reading Ease score falls below this number.
+# The scale runs from about 0 (very hard) to about 100 (very easy): 60 and above reads
+# as plain English, below 50 reads as college level. Lower it if the warnings come too
+# often. Sentences under 8 words are never scored — the formula is unreliable on them.
+flesch_reading_ease_threshold = 50.0
+# This check scores whole sentences, not single terms, so it has no allowlist.
