@@ -5,6 +5,9 @@ from collections.abc import Iterable
 
 from wordfreq import zipf_frequency
 
+from plain_english_checker.checks import CheckSpec, Severity, register_check
+from plain_english_checker.config import LIVE_CONFIG_PATH, CheckerSettings, WordfreqSettings
+
 WORDFREQ_CHECK_NAME = "wordfreq"
 
 SCORED_LANGUAGE = "en"
@@ -65,3 +68,32 @@ def _is_an_everyday_word(token: str) -> bool:
     if _CAMEL_CASE_BOUNDARY.search(token):
         return False
     return not token[0].isupper()
+
+
+def _settings_of(settings: CheckerSettings) -> WordfreqSettings:
+    return settings.wordfreq
+
+
+def _detect(text: str, settings: WordfreqSettings) -> list[str]:
+    return uncommon_words(
+        text, zipf_threshold=settings.zipf_threshold, allowlist=settings.allowlist
+    )
+
+
+def _describe(hits: list[str]) -> str:
+    return (
+        f"Uncommon word(s) used: {', '.join(hits)}. Most readers will not know them. "
+        "Rewrite with everyday words, or add a word to the wordfreq allowlist in "
+        f"{LIVE_CONFIG_PATH} when it is the right word to keep."
+    )
+
+
+register_check(
+    CheckSpec(
+        name=WORDFREQ_CHECK_NAME,
+        severity=Severity.WARN,
+        settings_of=_settings_of,
+        detect=_detect,
+        describe=_describe,
+    )
+)

@@ -6,30 +6,19 @@ import sys
 from importlib import resources
 from pathlib import Path
 
-from plain_english_checker.config import (
-    LIVE_CONFIG_PATH,
-    CheckerSettings,
-    IdiomSettings,
-    TextstatSettings,
-    WordfreqSettings,
-    load_config,
-)
+from plain_english_checker.checks import Severity, emit_findings, run_checks
+from plain_english_checker.config import LIVE_CONFIG_PATH, load_config
 from plain_english_checker.hook_payload import changed_text_segments, session_id_of
-from plain_english_checker.idiom_check import IDIOM_CHECK_NAME, idioms_used
-from plain_english_checker.matcher import find_matches
-from plain_english_checker.textstat_check import TEXTSTAT_CHECK_NAME, hard_to_read_sentences
 from plain_english_checker.tracking import (
     BLOCK_OUTCOME,
     TRACKING_DATABASE_PATH,
     WARN_OUTCOME,
     record_outcome,
 )
-from plain_english_checker.wordfreq_check import WORDFREQ_CHECK_NAME, uncommon_words
-from plain_english_checker.wordlist import LIVE_WORDLIST_PATH, load_wordlist
+from plain_english_checker.wordlist import LIVE_WORDLIST_PATH
 
 SEED_WORDLIST_RESOURCE = "seed_wordlist.txt"
 SEED_CONFIG_RESOURCE = "seed_config.toml"
-BANNED_WORD_CHECK_NAME = "banned-word"
 POST_TOOL_USE_EVENT_NAME = "PostToolUse"
 
 
@@ -64,73 +53,12 @@ def check(argv: list[str]) -> int:
     written_text = "\n".join(segments)
     settings = load_config(LIVE_CONFIG_PATH)
 
-    findings = _warn_findings(payload, written_text, settings)
-    if findings:
-        print(json.dumps(_additional_context_output("\n".join(findings))))
+    findings = run_checks(written_text, settings)
+    for finding in findings:
+        outcome = BLOCK_OUTCOME if finding.severity is Severity.BLOCK else WARN_OUTCOME
+        _record_outcome_without_failing_the_check(payload, finding.check_name, outcome)
 
-    block_reason = _banned_word_block_reason(payload, written_text)
-    if block_reason:
-        print(block_reason, file=sys.stderr)
-        return 2
-    return 0
-
-
-def _warn_findings(payload: dict, written_text: str, settings: CheckerSettings) -> list[str]:
-    findings = []
-    for check_name, finding in (
-        (WORDFREQ_CHECK_NAME, _wordfreq_finding(written_text, settings.wordfreq)),
-        (TEXTSTAT_CHECK_NAME, _textstat_finding(written_text, settings.textstat)),
-        (IDIOM_CHECK_NAME, _idiom_finding(written_text, settings.idiom)),
-    ):
-        if finding:
-            _record_outcome_without_failing_the_check(payload, check_name, WARN_OUTCOME)
-            findings.append(finding)
-    return findings
-
-
-def _wordfreq_finding(written_text: str, settings: WordfreqSettings) -> str:
-    if not settings.enabled:
-        return ""
-    hits = uncommon_words(
-        written_text, zipf_threshold=settings.zipf_threshold, allowlist=settings.allowlist
-    )
-    if not hits:
-        return ""
-    return (
-        f"Uncommon word(s) used: {', '.join(hits)}. Most readers will not know them. "
-        "Rewrite with everyday words, or add a word to the wordfreq allowlist in "
-        f"{LIVE_CONFIG_PATH} when it is the right word to keep."
-    )
-
-
-def _textstat_finding(written_text: str, settings: TextstatSettings) -> str:
-    if not settings.enabled:
-        return ""
-    hits = hard_to_read_sentences(
-        written_text, flesch_reading_ease_threshold=settings.flesch_reading_ease_threshold
-    )
-    if not hits:
-        return ""
-    listed = "\n".join(f"- {sentence}" for sentence in hits)
-    return (
-        f"Sentence(s) that read too hard:\n{listed}\n"
-        "Split each one into shorter sentences and use everyday words. Lower "
-        f"flesch_reading_ease_threshold in {LIVE_CONFIG_PATH} when this warning "
-        "comes too often."
-    )
-
-
-def _idiom_finding(written_text: str, settings: IdiomSettings) -> str:
-    if not settings.enabled:
-        return ""
-    hits = idioms_used(written_text, allowlist=settings.allowlist)
-    if not hits:
-        return ""
-    return (
-        f"Idiom(s) used: {', '.join(hits)}. Readers who learned English as a second "
-        "language will not know them. Say the plain meaning instead, or add an idiom to "
-        f"the idiom allowlist in {LIVE_CONFIG_PATH} when it is the right wording to keep."
-    )
+    return emit_findings(findings, additional_context_output=_additional_context_output)
 
 
 def _additional_context_output(finding: str) -> dict:
@@ -141,22 +69,6 @@ def _additional_context_output(finding: str) -> dict:
             "additionalContext": finding,
         },
     }
-
-
-def _banned_word_block_reason(payload: dict, written_text: str) -> str:
-    banned_terms = load_wordlist(LIVE_WORDLIST_PATH)
-    if not banned_terms:
-        return ""
-    hits = find_matches(written_text, banned_terms)
-    if not hits:
-        return ""
-    _record_outcome_without_failing_the_check(payload, BANNED_WORD_CHECK_NAME, BLOCK_OUTCOME)
-    return (
-        "Banned word(s) used: "
-        f"{', '.join(hits)}. Re-read the root CLAUDE.md (Simplified Technical "
-        "English rules) before continuing, then rewrite with simpler wording. "
-        "Do not restate the full banned list."
-    )
 
 
 def seed(argv: list[str]) -> int:

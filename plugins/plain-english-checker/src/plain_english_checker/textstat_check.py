@@ -4,6 +4,9 @@ import re
 
 import textstat
 
+from plain_english_checker.checks import CheckSpec, Severity, register_check
+from plain_english_checker.config import LIVE_CONFIG_PATH, CheckerSettings, TextstatSettings
+
 TEXTSTAT_CHECK_NAME = "textstat"
 
 MINIMUM_SCORED_WORD_COUNT = 8
@@ -61,3 +64,34 @@ def _sentences_in(paragraph: str) -> list[str]:
             sentences.append(sentence)
         start = terminator.end()
     return sentences
+
+
+def _settings_of(settings: CheckerSettings) -> TextstatSettings:
+    return settings.textstat
+
+
+def _detect(text: str, settings: TextstatSettings) -> list[str]:
+    return hard_to_read_sentences(
+        text, flesch_reading_ease_threshold=settings.flesch_reading_ease_threshold
+    )
+
+
+def _describe(hits: list[str]) -> str:
+    listed = "\n".join(f"- {sentence}" for sentence in hits)
+    return (
+        f"Sentence(s) that read too hard:\n{listed}\n"
+        "Split each one into shorter sentences and use everyday words. Lower "
+        f"flesch_reading_ease_threshold in {LIVE_CONFIG_PATH} when this warning "
+        "comes too often."
+    )
+
+
+register_check(
+    CheckSpec(
+        name=TEXTSTAT_CHECK_NAME,
+        severity=Severity.WARN,
+        settings_of=_settings_of,
+        detect=_detect,
+        describe=_describe,
+    )
+)
