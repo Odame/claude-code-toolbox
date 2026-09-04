@@ -1,5 +1,25 @@
 # claude-code-toolbox
 
+> [!IMPORTANT]
+> **Archived.** This repo's one plugin, `plain-english-checker`, moved to
+> [Odame/skills](https://github.com/Odame/skills) as `plainspeak`
+> (`plugins/plainspeak/`), released in
+> [v1.5.0](https://github.com/Odame/skills/releases/tag/v1.5.0). Reason: keeping
+> one active marketplace repo instead of two, now that `Odame/skills` already
+> ships a marketplace of its own. Two open RFCs against this repo,
+> [#14](https://github.com/Odame/claude-code-toolbox/issues/14) and
+> [#15](https://github.com/Odame/claude-code-toolbox/issues/15), were implemented
+> as part of the move rather than carried over as still-open. Install the new
+> plugin with:
+>
+> ```bash
+> claude plugin marketplace add Odame/skills
+> claude plugin install plainspeak@odame
+> ```
+>
+> Everything below this notice describes the old, pre-move layout and is kept
+> only for history.
+
 A personal collection of Claude Code plugins, skills, and hooks for day-to-day development.
 
 ## Layout
